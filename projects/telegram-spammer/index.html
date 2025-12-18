@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG Comment Spammer — Автоматизация комментариев в Telegram</title>
+    <meta name="description"
+        content="Desktop-приложение для автоматической рассылки комментариев в Telegram каналах с несколькими аккаунтами.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+            --border: #27272a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 24px;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .hero {
+            padding: 40px 24px 60px;
+            text-align: center;
+        }
+
+        .hero-emoji {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-dim);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 32px;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            padding: 0 24px 60px;
+        }
+
+        .carousel-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--bg-card);
+            aspect-ratio: 16/9;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.05));
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .placeholder {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .placeholder-num {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(59, 130, 246, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: -22px;
+        }
+
+        .carousel-btn.next {
+            right: -22px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list strong {
+            color: var(--text);
+        }
+
+        .result-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+
+        .result-box p {
+            color: var(--text);
+            margin: 0;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 60px 24px;
+            background: var(--bg-card);
+        }
+
+        .cta h2 {
+            margin-bottom: 16px;
+            font-size: 1.8rem;
+        }
+
+        .cta p {
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-container {
+                max-width: 100%;
+            }
+
+            .carousel-btn.prev {
+                left: 10px;
+            }
+
+            .carousel-btn.next {
+                right: 10px;
+            }
+        }
+
+        /* Lightbox */
+        .carousel-slide img {
+            cursor: zoom-in;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .lightbox-content img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 16px 20px;
+            border-radius: 8px;
+            z-index: 1001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 10px;
+        }
+
+        .lightbox-next {
+            right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-nav {
+                padding: 12px 16px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../" class="back-link">← Назад к портфолио</a>
+
+    <section class="hero">
+        <div class="hero-emoji">📱</div>
+        <h1>TG Comment Spammer</h1>
+        <p class="hero-subtitle">Desktop-приложение для автоматической рассылки комментариев в Telegram каналах.
+            Работает с несколькими аккаунтами, обходит ограничения и имитирует живого пользователя.</p>
+    </section>
+
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="img/1-optimized.jpg" alt="Скриншот 1"></div>
+                    <div class="carousel-slide"><img src="img/2-optimized.jpg" alt="Скриншот 2"></div>
+                    <div class="carousel-slide"><img src="img/3-optimized.jpg" alt="Скриншот 3"></div>
+                    <div class="carousel-slide"><img src="img/4-optimized.jpg" alt="Скриншот 4"></div>
+                    <div class="carousel-slide"><img src="img/5-optimized.jpg" alt="Скриншот 5"></div>
+                    <div class="carousel-slide"><img src="img/6-optimized.jpg" alt="Скриншот 6"></div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+
+    <div class="content">
+        <div class="section">
+            <h2>📱 Что это за приложение?</h2>
+            <p>Это программа для Windows, которая автоматически оставляет комментарии под постами в Telegram каналах. Вы
+                добавляете свои аккаунты, указываете каналы и шаблоны сообщений — программа делает всё остальное.</p>
+            <p>Работает в фоне, сама следит за новыми постами и комментирует их от имени ваших аккаунтов.</p>
+        </div>
+
+        <div class="section">
+            <h2>✨ Что умеет программа</h2>
+            <ul class="feature-list">
+                <li><strong>Несколько аккаунтов</strong> — добавляйте сколько угодно Telegram аккаунтов. Программа сама
+                    чередует их, чтобы не было подозрений.</li>
+                <li><strong>Шаблоны сообщений</strong> — создавайте разные варианты комментариев. Программа случайно
+                    выбирает из них, чтобы не повторяться.</li>
+                <li><strong>Защита от банов</strong> — умные задержки между сообщениями, имитация набора текста,
+                    автоматическое переключение на другой аккаунт при проблемах.</li>
+                <li><strong>Поддержка прокси</strong> — каждый аккаунт может работать через свой прокси для
+                    дополнительной безопасности.</li>
+                <li><strong>Логи в реальном времени</strong> — видите что происходит: какой аккаунт пишет, в какой
+                    канал, успешно или нет.</li>
+                <li><strong>Гибкие настройки</strong> — задержки, лимиты комментариев в день, интервалы проверки каналов
+                    — всё настраивается.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>💼 Для чего это нужно</h2>
+            <p>Для продвижения в Telegram. Комментарии под популярными постами — это бесплатный трафик. Но вручную
+                сидеть и комментировать — долго и скучно.</p>
+            <p>Программа автоматизирует эту рутину. Вы один раз настраиваете — она работает 24/7.</p>
+            <div class="result-box">
+                <p>📈 Экономия времени на рутинном продвижении. Один человек может вести активность как целая команда.
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Для кого это</h2>
+            <p>Для маркетологов, SMM-специалистов, владельцев каналов и всех, кто продвигается в Telegram. Для тех, кому
+                нужно масштабировать присутствие в комментариях без найма команды.</p>
+        </div>
+
+        <div class="section">
+            <h2>🖥 Как выглядит</h2>
+            <p>Удобный интерфейс с вкладками: аккаунты, каналы, шаблоны, настройки, логи. Всё управление через понятные
+                кнопки и формы. Запускается одним кликом, работает в фоне.</p>
+        </div>
+    </div>
+
+    <section class="cta">
+        <h2>Нужен похожий проект?</h2>
+        <p>Автоматизация, боты, desktop-приложения — напишите, обсудим вашу задачу</p>
+        <a href="https://t.me/Pavel_TeaGPT" class="cta-btn" target="_blank">Написать в Telegram</a>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightboxImg" src="" alt="Просмотр изображения">
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        const images = [];
+
+        // Collect images and create dots
+        document.querySelectorAll('.carousel-slide img').forEach((img, i) => {
+            images.push(img.src);
+            img.onclick = () => openLightbox(i);
+
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Lightbox
+        let lightboxIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        function openLightbox(index) {
+            lightboxIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNav(direction) {
+            lightboxIndex = (lightboxIndex + direction + images.length) % images.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = images[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${images.length}`;
+        }
+
+        // Close on background click
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) closeLightbox();
+        };
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxNav(-1);
+            if (e.key === 'ArrowRight') lightboxNav(1);
+        });
+
+        // Swipe for carousel
+        let touchStartX = 0;
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+        carousel.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+        });
+
+        // Swipe for lightbox
+        let lightboxTouchStartX = 0;
+        lightbox.addEventListener('touchstart', e => lightboxTouchStartX = e.touches[0].clientX);
+        lightbox.addEventListener('touchend', e => {
+            const diff = lightboxTouchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Voice Writer — Голосовой ввод текста с ИИ</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f0f14;
+            --bg-card: #1a1a24;
+            --accent: #8b5cf6;
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+            --border: #27272a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 24px;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: center;
+            padding: 40px 60px 40px 80px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--accent);
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(10px);
+            }
+
+            60% {
+                transform: translateY(5px);
+            }
+        }
+
+        .hero-content {
+            max-width: 500px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-carousel {
+            width: 380px;
+            height: 380px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            color: var(--text-dim);
+            margin-bottom: 48px;
+        }
+
+        .download-section {
+            margin-top: auto;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+        }
+
+        .download-info {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Carousel */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 80px 0;
+            background: var(--bg-card);
+            border-radius: 24px;
+            margin: 40px 0;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 48px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+
+        .step h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .step a {
+            color: var(--accent);
+        }
+
+        /* Use Cases */
+        .use-cases {
+            padding: 80px 0;
+        }
+
+        .use-cases h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 48px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .use-case {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .use-case h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .use-case p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.1));
+            border-radius: 24px;
+            margin: 40px 0;
+        }
+
+        .cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            background: #a78bfa;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .hero-wrapper {
+                min-height: auto;
+                padding-bottom: 40px;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px 24px 40px;
+            }
+
+            .hero-content {
+                min-height: auto;
+            }
+
+            .hero-carousel {
+                width: 100%;
+                max-width: 320px;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-link {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 16px 16px 40px;
+                gap: 32px;
+            }
+
+            .logo h1 {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .description {
+                font-size: 0.9rem;
+                margin-bottom: 24px;
+            }
+
+            .download-btn {
+                padding: 14px 24px;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-carousel {
+                max-width: 280px;
+            }
+
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .features {
+                padding: 48px 0;
+            }
+
+            .features h2 {
+                font-size: 1.5rem;
+                margin-bottom: 32px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .how-it-works {
+                padding: 48px 0;
+                margin: 24px 0;
+                border-radius: 16px;
+            }
+
+            .how-it-works h2 {
+                font-size: 1.5rem;
+                margin-bottom: 32px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+            }
+
+            .step h3 {
+                font-size: 0.9rem;
+            }
+
+            .step p {
+                font-size: 0.8rem;
+            }
+
+            .use-cases {
+                padding: 48px 0;
+            }
+
+            .use-cases h2 {
+                font-size: 1.5rem;
+                margin-bottom: 32px;
+            }
+
+            .use-case {
+                padding: 20px;
+            }
+
+            .cta {
+                padding: 48px 20px;
+                margin: 24px 0;
+                border-radius: 16px;
+            }
+
+            .cta h2 {
+                font-size: 1.4rem;
+            }
+
+            .cta p {
+                font-size: 0.9rem;
+            }
+
+            .cta-btn {
+                padding: 14px 28px;
+            }
+        }
+
+        /* Lightbox */
+        .carousel-slide img {
+            cursor: zoom-in;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .lightbox-content img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 16px 20px;
+            border-radius: 8px;
+            z-index: 1001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 10px;
+        }
+
+        .lightbox-next {
+            right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-nav {
+                padding: 12px 16px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../" class="back-link">← Назад к портфолио</a>
+    <div class="container">
+        <div class="hero-wrapper">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="logo">
+                        <img src="img/favicon.ico" alt="Gemini Voice Writer" class="logo-icon">
+                        <h1>Gemini Voice Writer</h1>
+                    </div>
+                    <p class="tagline">Превращайте голос в текст с помощью искусственного интеллекта</p>
+                    <p class="description">Бесплатное Windows-приложение для быстрого и точного голосового ввода.
+                        Используйте мощь Gemini AI для транскрипции речи в любом приложении.</p>
+                    <div class="download-section">
+                        <a href="GeminiVoiceWriter_Setup.exe" class="download-btn">Скачать для Windows</a>
+                        <p class="download-info">Windows 10/11 • Бесплатно • ~90 MB</p>
+                    </div>
+                </div>
+                <div class="hero-carousel">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="carousel-track">
+                            <div class="carousel-slide"><img src="img/1-optimized.jpg" alt="Скриншот 1"></div>
+                            <div class="carousel-slide"><img src="img/2-optimized.jpg" alt="Скриншот 2"></div>
+                            <div class="carousel-slide"><img src="img/3-optimized.jpg" alt="Скриншот 3"></div>
+                            <div class="carousel-slide"><img src="img/4-optimized.jpg" alt="Скриншот 4"></div>
+                            <div class="carousel-slide"><img src="img/5-optimized.jpg" alt="Скриншот 5"></div>
+                            <div class="carousel-slide"><img src="img/6-optimized.jpg" alt="Скриншот 6"></div>
+                            <div class="carousel-slide"><img src="img/7-optimized.jpg" alt="Скриншот 7"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" onclick="prevSlide()">←</button>
+                        <div class="carousel-dots" id="carousel-dots"></div>
+                        <button class="carousel-btn" onclick="nextSlide()">→</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="scroll-indicator"
+                onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'})">
+                <span>Узнать больше</span>
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </div>
+
+        <section class="features">
+            <h2>Возможности</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Голосовой ввод</h3>
+                    <p>Нажмите горячую клавишу, говорите, и текст автоматически появится в любом приложении</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Gemini AI</h3>
+                    <p>Используйте передовые модели Google Gemini для высокоточной транскрипции</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Мгновенная вставка</h3>
+                    <p>Текст автоматически вставляется в активное поле — мессенджеры, документы, браузер</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Горячие клавиши</h3>
+                    <p>Настраиваемые сочетания клавиш для быстрого запуска и остановки записи</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>История</h3>
+                    <p>Все транскрипции сохраняются локально. Можно переслушать и перетранскрибировать</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Приватность</h3>
+                    <p>Данные хранятся только на вашем устройстве. Никакой телеметрии</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>Как это работает</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Получите API ключ</h3>
+                    <p>Бесплатно на <a href="https://aistudio.google.com/apikey" target="_blank">Google AI
+                            Studio</a>
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Установите приложение</h3>
+                    <p>Скачайте и запустите установщик</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Настройте горячую клавишу</h3>
+                    <p>По умолчанию Alt+1</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Диктуйте!</h3>
+                    <p>Нажмите клавишу, говорите, отпустите — текст готов</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <h2>Для кого это приложение</h2>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                    <h3>👨‍💻 Разработчики</h3>
+                    <p>Быстро пишите комментарии к коду, документацию и сообщения в чатах</p>
+                </div>
+                <div class="use-case">
+                    <h3>✍️ Писатели и блогеры</h3>
+                    <p>Диктуйте статьи, посты и заметки — пишите в 3 раза быстрее</p>
+                </div>
+                <div class="use-case">
+                    <h3>📧 Офисные работники</h3>
+                    <p>Отвечайте на письма и сообщения голосом, экономьте время</p>
+                </div>
+                <div class="use-case">
+                    <h3>🎓 Студенты</h3>
+                    <p>Конспектируйте лекции, пишите рефераты и курсовые быстрее</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Нужно похожее приложение?</h2>
+            <p>Голосовые помощники, десктопные приложения, интеграции с ИИ — напишите, обсудим вашу задачу</p>
+            <a href="https://t.me/Pavel_TeaGPT" class="cta-btn" target="_blank">Написать в Telegram</a>
+        </section>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightboxImg" src="" alt="Просмотр">
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+    </div>
+
+    <script>
+        const totalSlides = 7;
+        let currentSlide = 0;
+        const track = document.getElementById('carousel-track');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const images = [];
+
+        document.querySelectorAll('.carousel-slide img').forEach((img, i) => {
+            images.push(img.src);
+            img.onclick = () => openLightbox(i);
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) { currentSlide = index; updateCarousel(); }
+
+        // Lightbox
+        let lightboxIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        function openLightbox(index) {
+            lightboxIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNav(direction) {
+            lightboxIndex = (lightboxIndex + direction + images.length) % images.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = images[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${images.length}`;
+        }
+
+        lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxNav(-1);
+            if (e.key === 'ArrowRight') lightboxNav(1);
+        });
+
+        // Swipe for lightbox
+        let lightboxTouchStartX = 0;
+        lightbox.addEventListener('touchstart', e => lightboxTouchStartX = e.touches[0].clientX);
+        lightbox.addEventListener('touchend', e => {
+            const diff = lightboxTouchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1);
+        });
+    </script>
+</body>
+
+</html>
