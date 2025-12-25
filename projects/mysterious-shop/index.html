@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysterious Shop — Telegram Mini App для магазина БАДов</title>
+    <meta name="description"
+        content="Telegram Mini App для магазина БАДов и пептидов. Каталог с категориями, корзина, оформление заказов, бонусная программа и админка.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+            --border: #27272a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 24px;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .hero {
+            padding: 40px 24px 60px;
+            text-align: center;
+        }
+
+        .hero-emoji {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-dim);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 32px;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .demo-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .carousel-section {
+            padding: 0 24px 60px;
+        }
+
+        .carousel-container {
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(139, 92, 246, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: -22px;
+        }
+
+        .carousel-btn.next {
+            right: -22px;
+        }
+
+        .carousel-counter {
+            text-align: center;
+            color: var(--text-dim);
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list strong {
+            color: var(--text);
+        }
+
+        .result-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+
+        .result-box p {
+            color: var(--text);
+            margin: 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .tech-tag {
+            background: var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .cta {
+            text-align: center;
+            padding: 60px 24px;
+            background: var(--bg-card);
+        }
+
+        .cta h2 {
+            margin-bottom: 16px;
+            font-size: 1.8rem;
+        }
+
+        .cta p {
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-container {
+                max-width: 100%;
+            }
+
+            .carousel-btn.prev {
+                left: 10px;
+            }
+
+            .carousel-btn.next {
+                right: 10px;
+            }
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .lightbox-content img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 16px 20px;
+            border-radius: 8px;
+            z-index: 1001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 10px;
+        }
+
+        .lightbox-next {
+            right: 10px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .carousel-slide img {
+            cursor: zoom-in;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../" class="back-link">← Назад к портфолио</a>
+
+    <section class="hero">
+        <div class="hero-emoji">💊</div>
+        <h1>Mysterious Shop</h1>
+        <p class="hero-subtitle">Telegram Mini App для магазина БАДов и пептидов. Полноценный интернет-магазин внутри
+            Telegram с каталогом, корзиной, оформлением заказов и админкой.</p>
+        <a href="https://t.me/MysteriosShopBot" target="_blank" class="demo-btn">Приложение в Telegram →</a>
+    </section>
+
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+            <div class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">20</span></div>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="section">
+            <h2>📱 О проекте</h2>
+            <p>Это приложение я сделал для магазина БАДов и пептидов, который работает через Telegram. У них уже был бот
+                с каталогом, но навигация была неудобной — команды в чате, нет категорий, наличие видно только после
+                клика на товар.</p>
+            <p>Я создал полноценное Mini App с современным интерфейсом: категории товаров, фильтр по наличию, корзина,
+                оформление заказов с выбором доставки (СДЭК/Почта России), бонусная программа с кэшбэком 5%.</p>
+        </div>
+
+        <div class="section">
+            <h2>✨ Функционал</h2>
+            <ul class="feature-list">
+                <li><strong>Каталог с категориями</strong> — пептиды, ноотропы, витамины, БАДы. Удобная навигация вместо
+                    команд в чате.</li>
+                <li><strong>Фильтр "В наличии"</strong> — клиент сразу видит только доступные товары, не тратит время на
+                    пустые карточки.</li>
+                <li><strong>Корзина и оформление</strong> — добавление товаров, выбор способа доставки, ввод адреса,
+                    загрузка скриншота оплаты.</li>
+                <li><strong>Бонусная программа</strong> — автоматический кэшбэк 5% с каждой покупки. Баллы можно тратить
+                    на скидки.</li>
+                <li><strong>История заказов</strong> — клиент видит все свои заказы, статусы, трек-номера для
+                    отслеживания.</li>
+                <li><strong>Админка</strong> — управление товарами, просмотр заказов, подтверждение оплаты, смена
+                    статусов.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🛠 Технологии</h2>
+            <p>Фронтенд на React 18 с TypeScript, бэкенд на Node.js + Express, база данных SQLite. Приложение работает
+                как
+                Telegram Mini App — открывается прямо в мессенджере без установки.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">React 18</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">Telegram Mini App</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💼 Результат</h2>
+            <p>Клиенты магазина получили удобный интерфейс для покупок. Владельцы — инструмент для управления заказами и
+                товарами без программиста.</p>
+            <div class="result-box">
+                <p>📈 Удобная навигация вместо команд • Корзина и оформление в 3 клика • Бонусы для повторных покупок •
+                    Админка для владельцев</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta">
+        <h2>Нужно похожее приложение?</h2>
+        <p>Telegram Mini App для вашего бизнеса — напишите, обсудим задачу</p>
+        <a href="https://t.me/nepavel" class="cta-btn" target="_blank">Написать в Telegram</a>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightboxImg" src="" alt="Просмотр">
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+    </div>
+
+    <script>
+        const totalSlides = 20;
+        let currentSlide = 0;
+        const track = document.getElementById('carouselTrack');
+        const images = [];
+
+        // Generate slides
+        for (let i = 1; i <= totalSlides; i++) {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            const img = document.createElement('img');
+            img.src = `img/${i}.jpeg`;
+            img.alt = `Скриншот ${i}`;
+            img.onclick = () => openLightbox(i - 1);
+            images.push(img.src);
+            slide.appendChild(img);
+            track.appendChild(slide);
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Lightbox
+        let lightboxIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        function openLightbox(index) {
+            lightboxIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNav(direction) {
+            lightboxIndex = (lightboxIndex + direction + images.length) % images.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = images[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${images.length}`;
+        }
+
+        lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') lightboxNav(-1);
+                if (e.key === 'ArrowRight') lightboxNav(1);
+            } else {
+                if (e.key === 'ArrowLeft') moveCarousel(-1);
+                if (e.key === 'ArrowRight') moveCarousel(1);
+            }
+        });
+
+        // Swipe
+        let touchStartX = 0;
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+        carousel.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+        });
+
+        lightbox.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+        lightbox.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1);
+        });
+    </script>
+</body>
+
+</html>

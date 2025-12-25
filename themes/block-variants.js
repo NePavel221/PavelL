@@ -5,6 +5,7 @@ const BlockVariants = {
 
     // Данные проектов
     allProjects: [
+        { img: 'projects/mysterious-shop/preview/preview.jpeg', icon: '💊', title: 'Mysterious Shop', desc: 'Telegram Mini App для магазина БАДов — каталог, корзина, заказы, админка', tags: ['React', 'TypeScript', 'Node.js'], link: 'projects/mysterious-shop/' },
         { img: 'projects/gemini-voice-writer/preview/preview-optimized.jpg', icon: '🎙️', title: 'Gemini Voice Writer', desc: 'Desktop-приложение для голосового ввода с AI-транскрипцией', tags: ['Python', 'PyQt6', 'Gemini'], link: 'projects/gemini-voice-writer/' },
         { img: 'projects/telegram-spammer/preview/preview-optimized.jpg', icon: '📱', title: 'Telegram Spammer', desc: 'Автоматическая рассылка комментариев с антибан-защитой', tags: ['Python', 'Telethon', 'Web UI'], link: 'projects/telegram-spammer/' },
         { img: 'projects/totoro-bot/preview/preview-optimized.jpg', icon: '🍃', title: 'TotoroDiet', desc: 'Telegram Mini App — трекер питания с AI-анализом фото', tags: ['Python', 'Gemini', 'Supabase'], link: 'projects/totoro-bot/' },
