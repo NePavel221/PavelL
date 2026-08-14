@@ -5,6 +5,7 @@ const BlockVariants = {
 
     // Данные проектов
     allProjects: [
+        { img: 'projects/tg-control/preview/preview.webp', icon: 'TC', title: 'TG Control', badge: 'Облачный SaaS', desc: 'Облачный SaaS для продвижения Telegram-каналов через автоматизированные комментарии', tags: ['SaaS', 'React', 'FastAPI'], link: 'projects/tg-control/' },
         { img: 'projects/mysterious-shop/preview/preview.jpeg', icon: '💊', title: 'Mysterious Shop', desc: 'Telegram Mini App для магазина БАДов — каталог, корзина, заказы, админка', tags: ['React', 'TypeScript', 'Node.js'], link: 'projects/mysterious-shop/' },
         { img: 'projects/gemini-voice-writer/preview/preview-optimized.jpg', icon: '🎙️', title: 'Gemini Voice Writer', desc: 'Desktop-приложение для голосового ввода с AI-транскрипцией', tags: ['Python', 'PyQt6', 'Gemini'], link: 'projects/gemini-voice-writer/' },
         { img: 'projects/telegram-spammer/preview/preview-optimized.jpg', icon: '📱', title: 'Telegram Spammer', desc: 'Автоматическая рассылка комментариев с антибан-защитой', tags: ['Python', 'Telethon', 'Web UI'], link: 'projects/telegram-spammer/' },
@@ -75,9 +76,11 @@ const BlockVariants = {
     getProjectCard(p, style) {
         const imgContent = p.img ? `<img src="${p.img}" alt="${p.title}">` : `<span class="proj-icon">${p.icon}</span>`;
         const tagsHtml = p.tags.map(t => `<span>${t}</span>`).join('');
+        const badgeHtml = p.badge ? `<span class="project-badge">${p.badge}</span>` : '';
         return `<a href="${p.link}" class="project-card ${style}">
             <div class="project-img">${imgContent}</div>
             <div class="project-info">
+                ${badgeHtml}
                 <h3>${p.title}</h3>
                 <p>${p.desc}</p>
                 <div class="tags">${tagsHtml}</div>
@@ -237,6 +240,7 @@ const BlockVariants = {
 .project-img img { width: 100%; height: 100%; object-fit: cover; }
 .proj-icon { font-size: 3rem; }
 .project-info { padding: 20px; }
+.project-badge { display: inline-flex; margin-bottom: 10px; padding: 5px 9px; border: 1px solid rgba(139, 92, 246, 0.32); border-radius: 6px; background: rgba(139, 92, 246, 0.1); color: #c4b5fd; font: 600 0.68rem/1 "Inter", sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
 .project-info h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .project-info p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru" data-design="dark-index">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08080b">
+    <title>TG Control - облачный SaaS для продвижения Telegram-каналов | Павел Лесников</title>
+    <meta name="description"
+        content="Кейс TG Control: облачный SaaS для продвижения Telegram-каналов. React, FastAPI, Telethon, Gemini, тарифы, админ-панель и production-развёртывание.">
+    <link rel="canonical" href="https://nepavel221.github.io/PavelL/projects/tg-control/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="TG Control - облачный SaaS для продвижения Telegram-каналов">
+    <meta property="og:description"
+        content="Полный цикл разработки коммерческого SaaS: интерфейс, backend, Telegram, AI и облачная инфраструктура.">
+    <meta property="og:url" content="https://nepavel221.github.io/PavelL/projects/tg-control/">
+    <meta property="og:image"
+        content="https://nepavel221.github.io/PavelL/projects/tg-control/preview/preview.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/dark-index.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../" aria-label="Вернуться в портфолио Павла Лесникова">
+                <span class="brand-mark" aria-hidden="true">TC</span>
+                <span class="brand-copy">
+                    <strong>TG CONTROL</strong>
+                    <small>CASE STUDY</small>
+                </span>
+            </a>
+            <nav class="header-nav" aria-label="Навигация по странице">
+                <a href="#product">Продукт</a>
+                <a href="#engineering">Разработка</a>
+                <a class="header-cta" href="https://t.me/Pavel_TeaGPT" target="_blank"
+                    rel="noopener noreferrer">Обсудить проект</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-inner">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">ОБЛАЧНЫЙ СЕРВИС ДЛЯ TELEGRAM</p>
+                    <h1>Продвижение без привязки к компьютеру</h1>
+                    <p class="hero-lead">Настройте профили, каналы и комментарии. TG Control продолжит работу на облачном сервере.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="https://t.me/Pavel_TeaGPT" target="_blank"
+                            rel="noopener noreferrer">Обсудить похожий проект</a>
+                        <a class="button button-secondary" href="https://tg-control.duckdns.org/" target="_blank"
+                            rel="noopener noreferrer">Открыть TG Control</a>
+                    </div>
+                </div>
+                <div class="hero-media reveal" data-delay="1" aria-hidden="true">
+                    <img class="hero-media-dashboard" src="img/gallery/dashboard.webp" width="1920" height="869" alt="">
+                    <div class="hero-media-frame"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section" aria-labelledby="gallery-title">
+            <div class="section-shell">
+                <div class="gallery-heading reveal">
+                    <div>
+                        <h2 id="gallery-title">Интерфейс работающего сервиса</h2>
+                        <p>Настоящие экраны работающего сервиса. Персональные данные заменены демонстрационными.</p>
+                    </div>
+                    <div class="gallery-counter" aria-live="polite">
+                        <span id="currentSlide">1</span>
+                        <span>/</span>
+                        <span>6</span>
+                    </div>
+                </div>
+
+                <div class="gallery-carousel reveal" data-carousel>
+                    <div class="gallery-viewport">
+                        <div class="gallery-track">
+                            <figure class="gallery-slide" data-title="Обзор системы"
+                                data-description="Тариф, лимиты и ключевые показатели в одном рабочем пространстве.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/dashboard.webp"
+                                    data-alt="Реальный обезличенный экран обзора системы TG Control">
+                                    <img src="img/gallery/dashboard.webp" width="1920" height="869"
+                                        alt="Реальный обезличенный экран обзора системы TG Control">
+                                </button>
+                            </figure>
+                            <figure class="gallery-slide" data-title="Telegram-профили"
+                                data-description="Авторизация, статусы, приоритеты, fingerprint и быстрый переход в чаты.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/accounts.webp"
+                                    data-alt="Реальный обезличенный экран управления Telegram-профилями TG Control">
+                                    <img src="img/gallery/accounts.webp" width="1920" height="869" loading="lazy"
+                                        alt="Реальный обезличенный экран управления Telegram-профилями TG Control">
+                                </button>
+                            </figure>
+                            <figure class="gallery-slide" data-title="Каналы"
+                                data-description="Публичные и приватные источники с приоритетами и быстрым управлением.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/channels.webp"
+                                    data-alt="Реальный обезличенный экран управления каналами TG Control">
+                                    <img src="img/gallery/channels.webp" width="1920" height="869" loading="lazy"
+                                        alt="Реальный обезличенный экран управления каналами TG Control">
+                                </button>
+                            </figure>
+                            <figure class="gallery-slide" data-title="Сообщения"
+                                data-description="Шаблоны комментариев и отдельный режим AI-генерации.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/messages.webp"
+                                    data-alt="Реальный обезличенный экран шаблонов сообщений TG Control">
+                                    <img src="img/gallery/messages.webp" width="1920" height="869" loading="lazy"
+                                        alt="Реальный обезличенный экран шаблонов сообщений TG Control">
+                                </button>
+                            </figure>
+                            <figure class="gallery-slide" data-title="Автоматизация"
+                                data-description="Запуск облачного процесса, realtime-логи и экспорт журнала.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/automation.webp"
+                                    data-alt="Реальный обезличенный экран автоматизации TG Control">
+                                    <img src="img/gallery/automation.webp" width="1920" height="869" loading="lazy"
+                                        alt="Реальный обезличенный экран автоматизации TG Control">
+                                </button>
+                            </figure>
+                            <figure class="gallery-slide" data-title="Тарифы"
+                                data-description="Free, Pro и Business с лимитами аккаунтов и каналов.">
+                                <button class="gallery-image" type="button" data-image="img/gallery/billing.webp"
+                                    data-alt="Реальный обезличенный экран тарифов TG Control">
+                                    <img src="img/gallery/billing.webp" width="1920" height="869" loading="lazy"
+                                        alt="Реальный обезличенный экран тарифов TG Control">
+                                </button>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="gallery-meta">
+                        <div>
+                            <h3 id="slideTitle">Обзор системы</h3>
+                            <p id="slideDescription">Тариф, лимиты и ключевые показатели в одном рабочем пространстве.</p>
+                        </div>
+                        <div class="gallery-controls">
+                            <button class="gallery-arrow" type="button" data-carousel-prev
+                                aria-label="Предыдущий экран">←</button>
+                            <button class="gallery-arrow" type="button" data-carousel-next
+                                aria-label="Следующий экран">→</button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-dots" aria-label="Выбор экрана">
+                        <button class="gallery-dot is-active" type="button" data-carousel-dot="0"
+                            aria-label="Экран 1: Обзор системы" aria-current="true"></button>
+                        <button class="gallery-dot" type="button" data-carousel-dot="1"
+                            aria-label="Экран 2: Telegram-профили"></button>
+                        <button class="gallery-dot" type="button" data-carousel-dot="2"
+                            aria-label="Экран 3: Каналы"></button>
+                        <button class="gallery-dot" type="button" data-carousel-dot="3"
+                            aria-label="Экран 4: Сообщения"></button>
+                        <button class="gallery-dot" type="button" data-carousel-dot="4"
+                            aria-label="Экран 5: Автоматизация"></button>
+                        <button class="gallery-dot" type="button" data-carousel-dot="5"
+                            aria-label="Экран 6: Тарифы"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ownership" id="engineering">
+            <div class="section-shell ownership-layout">
+                <div class="ownership-copy reveal">
+                    <h2>Один разработчик.<br>Весь продукт.</h2>
+                    <p>
+                        Я самостоятельно спроектировал TG Control, разработал интерфейс и backend,
+                        интегрировал Telegram и Gemini, добавил тарифную модель, админ-панель
+                        и развернул сервис в облаке.
+                    </p>
+                </div>
+                <ul class="capability-line reveal" data-delay="1" aria-label="Зоны ответственности">
+                    <li>Продукт</li>
+                    <li>Frontend</li>
+                    <li>Backend</li>
+                    <li>Telegram API</li>
+                    <li>AI</li>
+                    <li>Биллинг</li>
+                    <li>DevOps</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="workflow" id="product">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Четыре модуля до запуска</h2>
+                    <p>Владелец канала управляет всем процессом из одной веб-панели.</p>
+                </div>
+
+                <ol class="workflow-list">
+                    <li class="workflow-item reveal">
+                        <span class="step-number">01</span>
+                        <div>
+                            <h3>Подключить профили</h3>
+                            <p>Авторизация Telegram-профилей, индивидуальные настройки и приоритеты.</p>
+                        </div>
+                    </li>
+                    <li class="workflow-item reveal" data-delay="1">
+                        <span class="step-number">02</span>
+                        <div>
+                            <h3>Добавить каналы</h3>
+                            <p>Публичные и приватные источники, сортировка и включение нужных направлений.</p>
+                        </div>
+                    </li>
+                    <li class="workflow-item reveal" data-delay="2">
+                        <span class="step-number">03</span>
+                        <div>
+                            <h3>Настроить контент</h3>
+                            <p>Готовые шаблоны или AI-генерация с учётом содержания публикации.</p>
+                        </div>
+                    </li>
+                    <li class="workflow-item reveal" data-delay="3">
+                        <span class="step-number">04</span>
+                        <div>
+                            <h3>Запустить в облаке</h3>
+                            <p>Сценарий работает на сервере без включённого компьютера пользователя.</p>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+        </section>
+
+        <section class="control">
+            <div class="section-shell control-grid">
+                <div class="control-copy reveal">
+                    <h2>Все настройки<br>в одной системе.</h2>
+                    <p>
+                        TG Control объединяет профили, источники, контент и наблюдение за процессом.
+                        Каждый сценарий работает по установленным лимитам и задержкам.
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Несколько Telegram-профилей</strong>
+                            <span>Приоритеты, состояния и индивидуальные настройки.</span>
+                        </li>
+                        <li>
+                            <strong>Контролируемое поведение</strong>
+                            <span>Дневные лимиты, случайные задержки и интервалы проверки.</span>
+                        </li>
+                        <li>
+                            <strong>Шаблоны и AI</strong>
+                            <span>Подготовленный текст или генерация комментария по содержанию поста.</span>
+                        </li>
+                        <li>
+                            <strong>История и realtime-логи</strong>
+                            <span>Статус процесса, выполненные действия и экспорт журнала.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cloud">
+            <div class="section-shell">
+                <div class="cloud-heading reveal">
+                    <h2>Продвижение остаётся в сети</h2>
+                    <p>
+                        Автоматизация выполняется на сервере. Домашний компьютер
+                        и стабильность локального подключения больше не ограничивают процесс.
+                    </p>
+                </div>
+
+                <div class="comparison reveal">
+                    <article class="comparison-side muted-side">
+                        <p class="comparison-label">ЛОКАЛЬНАЯ ПРОГРАММА</p>
+                        <h3>Привязана к компьютеру</h3>
+                        <ul>
+                            <li>Требует включённого устройства</li>
+                            <li>Зависит от домашнего интернета</li>
+                            <li>Нуждается в ручном запуске</li>
+                        </ul>
+                    </article>
+                    <article class="comparison-side active-side">
+                        <p class="comparison-label">TG CONTROL</p>
+                        <h3>Работает в облаке 24/7</h3>
+                        <ul>
+                            <li>Доступен через обычный браузер</li>
+                            <li>Сохраняет настройки и историю</li>
+                            <li>Продолжает сценарий на сервере</li>
+                        </ul>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="saas">
+            <div class="section-shell saas-grid">
+                <div class="saas-copy reveal">
+                    <h2>Коммерческий сервис, не скрипт</h2>
+                    <p>
+                        Основная автоматизация встроена в полноценный продуктовый контур:
+                        пользователи регистрируются, работают в рамках тарифа
+                        и управляют собственными данными.
+                    </p>
+                    <div class="saas-facts">
+                        <span>Авторизация</span>
+                        <span>Free / Pro / Business</span>
+                        <span>Промокоды</span>
+                        <span>Админ-панель</span>
+                        <span>Пользователи и роли</span>
+                        <span>Платёжный контур</span>
+                    </div>
+                    <p class="billing-status">
+                        Тарифная модель уже работает. Можно зарегистрироваться и протестировать бесплатный тариф.
+                        Подключение онлайн-оплаты завершается.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="stack">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Технологии продукта</h2>
+                    <p>Компактный fullstack без лишней сложности.</p>
+                </div>
+                <dl class="stack-list reveal">
+                    <div>
+                        <dt>Frontend</dt>
+                        <dd>React, TypeScript, Tailwind CSS</dd>
+                    </div>
+                    <div>
+                        <dt>Backend</dt>
+                        <dd>Python, FastAPI, WebSocket</dd>
+                    </div>
+                    <div>
+                        <dt>Telegram</dt>
+                        <dd>MTProto, Telethon</dd>
+                    </div>
+                    <div>
+                        <dt>AI</dt>
+                        <dd>Gemini</dd>
+                    </div>
+                    <div>
+                        <dt>Infrastructure</dt>
+                        <dd>Docker, Nginx, HTTPS, облачный сервер</dd>
+                    </div>
+                    <div>
+                        <dt>Product</dt>
+                        <dd>Авторизация, тарифы, промокоды, админ-панель</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="closing-glow" aria-hidden="true"></div>
+            <div class="section-shell closing-inner reveal">
+                <p class="closing-kicker">FULLSTACK РАЗРАБОТКА ПОД КЛЮЧ</p>
+                <h2>Нужен сервис под вашу задачу?</h2>
+                <p>Могу разработать интерфейс, backend, интеграции, сервер и подготовить продукт к запуску.</p>
+                <div class="closing-actions">
+                    <a class="button button-primary" href="https://t.me/Pavel_TeaGPT" target="_blank"
+                        rel="noopener noreferrer">Обсудить похожий проект</a>
+                    <a class="text-link" href="https://tg-control.duckdns.org/" target="_blank"
+                        rel="noopener noreferrer">Открыть TG Control</a>
+                </div>
+                <a class="back-link" href="../../">Вернуться ко всем проектам</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="section-shell footer-inner">
+            <span>Павел Лесников</span>
+            <span>Fullstack-разработка и автоматизация</span>
+        </div>
+    </footer>
+
+    <dialog class="image-dialog" aria-label="Увеличенный интерфейс TG Control">
+        <button class="dialog-close" type="button" aria-label="Закрыть изображение">Закрыть</button>
+        <img alt="">
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

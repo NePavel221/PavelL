@@ -1,0 +1,375 @@
+html[data-design="dark-index"] {
+    color-scheme: dark;
+    --bg: #090a0c;
+    --surface: #0e1013;
+    --surface-soft: #12151a;
+    --surface-purple: #101722;
+    --border: #242830;
+    --border-strong: #394352;
+    --text: #f2f4f7;
+    --text-dim: #a4aab4;
+    --text-muted: #656c77;
+    --accent: #4d98f2;
+    --accent-light: #78b5ff;
+    --accent-dark: #286fc4;
+    --success: #5db893;
+    --warning: #d2a950;
+    --shell: min(900px, calc(100% - 48px));
+    --radius: 10px;
+}
+
+html[data-design="dark-index"] body {
+    background: #090a0c;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html[data-design="dark-index"] body::before {
+    opacity: 0.34;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.009) 1px, transparent 1px);
+    background-size: 100% 56px, 56px 100%;
+}
+
+html[data-design="dark-index"] .site-header {
+    border-color: #1d2026;
+    background: rgba(9, 10, 12, 0.88);
+    backdrop-filter: blur(14px);
+}
+
+html[data-design="dark-index"] .header-inner {
+    height: 68px;
+}
+
+html[data-design="dark-index"] .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-color: #2d66a8;
+    border-radius: 8px;
+    background: #0d1724;
+    color: #78b5ff;
+    box-shadow: none;
+}
+
+html[data-design="dark-index"] .header-nav {
+    gap: 22px;
+}
+
+html[data-design="dark-index"] .header-nav .header-cta,
+html[data-design="dark-index"] .button {
+    border-radius: 8px;
+}
+
+html[data-design="dark-index"] .hero {
+    min-height: auto;
+    padding: 122px 0 62px;
+    text-align: center;
+}
+
+html[data-design="dark-index"] .hero::after,
+html[data-design="dark-index"] .hero-glow,
+html[data-design="dark-index"] .hero-media-frame {
+    display: none;
+}
+
+html[data-design="dark-index"] .hero-inner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+html[data-design="dark-index"] .hero-copy {
+    max-width: 760px;
+}
+
+html[data-design="dark-index"] .eyebrow {
+    width: fit-content;
+    margin: 0 auto 22px;
+    padding: 8px 12px;
+    border: 1px solid #244f82;
+    border-radius: 999px;
+    background: #0c1420;
+    color: #78b5ff;
+    font-size: 10px;
+    letter-spacing: 0.11em;
+}
+
+html[data-design="dark-index"] .hero h1 {
+    max-width: 760px;
+    font-size: clamp(45px, 5.1vw, 60px);
+    font-weight: 650;
+    letter-spacing: -0.05em;
+    line-height: 1.01;
+}
+
+html[data-design="dark-index"] .hero-lead {
+    max-width: 650px;
+    margin: 20px auto 0;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+html[data-design="dark-index"] .hero-actions {
+    justify-content: center;
+    margin-top: 26px;
+}
+
+html[data-design="dark-index"] .button {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 14px;
+}
+
+html[data-design="dark-index"] .button-primary {
+    background: #397fce;
+}
+
+html[data-design="dark-index"] .button-primary:hover,
+html[data-design="dark-index"] .button-primary:focus-visible {
+    background: #4d98f2;
+}
+
+html[data-design="dark-index"] .button-secondary {
+    border-color: #2b3039;
+    background: #101216;
+}
+
+html[data-design="dark-index"] .hero-media {
+    position: relative;
+    width: 100%;
+    display: block;
+    margin-top: 48px;
+    padding: 10px;
+    border: 1px solid #242830;
+    border-radius: 12px;
+    background:
+        linear-gradient(rgba(9, 10, 12, 0.16), rgba(9, 10, 12, 0.16)),
+        url("../img/design/dark-index-material.webp") center / cover no-repeat,
+        #0e1013;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+}
+
+html[data-design="dark-index"] .hero-media-dashboard {
+    width: 100%;
+    height: auto;
+    border: 1px solid #2c313a;
+    border-radius: 7px;
+}
+
+html[data-design="dark-index"] .gallery-section {
+    padding: 72px 0 80px;
+    border-color: #20242b;
+    background: #0b0c0f;
+}
+
+html[data-design="dark-index"] .gallery-heading {
+    align-items: start;
+}
+
+html[data-design="dark-index"] .gallery-heading h2,
+html[data-design="dark-index"] .ownership h2,
+html[data-design="dark-index"] .section-heading h2,
+html[data-design="dark-index"] .control h2,
+html[data-design="dark-index"] .cloud h2,
+html[data-design="dark-index"] .saas h2,
+html[data-design="dark-index"] .stack h2,
+html[data-design="dark-index"] .closing h2 {
+    font-size: clamp(32px, 4.1vw, 48px);
+    letter-spacing: -0.04em;
+}
+
+html[data-design="dark-index"] .gallery-viewport {
+    padding: 8px;
+    border-color: #242830;
+    border-radius: 10px;
+    background: #111318;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+}
+
+html[data-design="dark-index"] .gallery-image {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+html[data-design="dark-index"] .gallery-arrow {
+    border-color: #2b3039;
+    border-radius: 8px;
+    background: #111318;
+}
+
+html[data-design="dark-index"] .ownership,
+html[data-design="dark-index"] .workflow,
+html[data-design="dark-index"] .control,
+html[data-design="dark-index"] .cloud,
+html[data-design="dark-index"] .saas,
+html[data-design="dark-index"] .stack {
+    padding: 76px 0;
+}
+
+html[data-design="dark-index"] .ownership,
+html[data-design="dark-index"] .control,
+html[data-design="dark-index"] .saas,
+html[data-design="dark-index"] .closing {
+    border-color: #20242b;
+    background: #0b0c0f;
+}
+
+html[data-design="dark-index"] .ownership-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 32px;
+}
+
+html[data-design="dark-index"] .ownership-copy {
+    max-width: 720px;
+}
+
+html[data-design="dark-index"] .capability-line {
+    justify-content: flex-start;
+}
+
+html[data-design="dark-index"] .capability-line li,
+html[data-design="dark-index"] .saas-facts span {
+    padding: 9px 12px;
+    border-color: #272c34;
+    border-radius: 7px;
+    background: #101216;
+}
+
+html[data-design="dark-index"] .workflow {
+    background: #090a0c;
+}
+
+html[data-design="dark-index"] .workflow-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    border: 0;
+}
+
+html[data-design="dark-index"] .workflow-item {
+    min-height: 176px;
+    padding: 22px;
+    border: 1px solid #242830;
+    border-radius: 9px;
+    background: #0e1013;
+}
+
+html[data-design="dark-index"] .workflow-item h3 {
+    margin-top: 36px;
+    font-size: 18px;
+}
+
+html[data-design="dark-index"] .control-copy {
+    max-width: none;
+}
+
+html[data-design="dark-index"] .feature-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 38px;
+}
+
+html[data-design="dark-index"] .feature-list li,
+html[data-design="dark-index"] .feature-list li:first-child {
+    padding: 18px;
+    border: 1px solid #242830;
+    border-radius: 9px;
+    background: #0e1013;
+}
+
+html[data-design="dark-index"] .cloud {
+    background: #090a0c;
+}
+
+html[data-design="dark-index"] .cloud-heading {
+    display: block;
+    max-width: 720px;
+}
+
+html[data-design="dark-index"] .cloud-heading > p {
+    margin-top: 20px;
+}
+
+html[data-design="dark-index"] .comparison {
+    margin-top: 42px;
+    border-color: #242830;
+    border-radius: 9px;
+}
+
+html[data-design="dark-index"] .comparison-side {
+    min-height: 270px;
+    padding: 30px;
+}
+
+html[data-design="dark-index"] .muted-side {
+    background: #0d0f12;
+}
+
+html[data-design="dark-index"] .active-side {
+    background: #101722;
+}
+
+html[data-design="dark-index"] .stack {
+    background: #090a0c;
+}
+
+html[data-design="dark-index"] .stack-list,
+html[data-design="dark-index"] .stack-list div {
+    border-color: #242830;
+}
+
+html[data-design="dark-index"] .stack-list dd {
+    font-size: 19px;
+}
+
+html[data-design="dark-index"] .closing {
+    padding: 92px 0 84px;
+}
+
+html[data-design="dark-index"] .closing-glow {
+    display: none;
+}
+
+html[data-design="dark-index"] .closing-inner {
+    max-width: 760px;
+}
+
+html[data-design="dark-index"] .site-footer {
+    border-color: #20242b;
+    background: #090a0c;
+}
+
+@media (max-width: 760px) {
+    html[data-design="dark-index"] {
+        --shell: calc(100% - 32px);
+    }
+
+    html[data-design="dark-index"] .hero {
+        padding-top: 106px;
+    }
+
+    html[data-design="dark-index"] .hero h1 {
+        font-size: 42px;
+    }
+
+    html[data-design="dark-index"] .hero-media {
+        margin-top: 34px;
+        padding: 6px;
+    }
+
+    html[data-design="dark-index"] .workflow-list,
+    html[data-design="dark-index"] .feature-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    html[data-design="dark-index"] .hero h1 {
+        font-size: 37px;
+    }
+
+    html[data-design="dark-index"] .hero-media {
+        display: none;
+    }
+}
