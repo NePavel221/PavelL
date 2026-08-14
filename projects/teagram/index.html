@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090b">
+    <title>TeaGram Desktop - кастомный Telegram-клиент для Windows | Павел Лесников</title>
+    <meta name="description"
+        content="Кейс TeaGram Desktop: кастомный Telegram-клиент на C++ и Qt с режимом призрака, сохранением удалённых сообщений, одноразовых медиа и защищённого контента.">
+    <link rel="canonical" href="https://nepavel221.github.io/PavelL/projects/teagram/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="TeaGram Desktop - кастомный Telegram-клиент для Windows">
+    <meta property="og:description"
+        content="Развитие большого C++/Qt-форка: продуктовые функции, обновления Telegram Desktop и системная интеграция Windows.">
+    <meta property="og:url" content="https://nepavel221.github.io/PavelL/projects/teagram/">
+    <meta property="og:image"
+        content="https://nepavel221.github.io/PavelL/projects/teagram/preview/preview.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/webp" href="img/teagram-logo.webp">
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/crane-index.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../" aria-label="Вернуться в портфолио Павла Лесникова">
+                <img src="img/teagram-logo.webp" width="56" height="56" alt="">
+                <span>
+                    <strong>TeaGram</strong>
+                    <small>DESKTOP CASE</small>
+                </span>
+            </a>
+            <nav class="header-nav" aria-label="Навигация по странице">
+                <a href="#capabilities">Возможности</a>
+                <a href="#engineering">Разработка</a>
+                <a class="header-cta" href="https://t.me/TeaWithGPT/245" target="_blank"
+                    rel="noopener noreferrer">Скачать TeaGram</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy reveal">
+                    <p class="hero-kicker">КАСТОМНЫЙ КЛИЕНТ ДЛЯ WINDOWS</p>
+                    <h1>Ваш Telegram. Ваш контроль.</h1>
+                    <p class="hero-lead">Удалённые сообщения остаются, одноразовые фото не исчезают, а приватность настраивается под вас.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="https://t.me/TeaWithGPT/245" target="_blank"
+                            rel="noopener noreferrer">Скачать для Windows</a>
+                        <a class="button button-secondary" href="#capabilities">Посмотреть возможности</a>
+                    </div>
+                </div>
+                <div class="hero-art reveal" data-delay="1">
+                    <div class="hero-material" aria-hidden="true"></div>
+                    <img src="img/teagram-logo.webp" width="512" height="512"
+                        alt="Фирменный знак TeaGram с бумажным журавлём">
+                    <dl class="hero-facts" aria-label="Основные характеристики проекта">
+                        <div><dt>Основа</dt><dd>Telegram Desktop 7.0.9</dd></div>
+                        <div><dt>Разработка</dt><dd>C++ и Qt</dd></div>
+                        <div><dt>Платформа</dt><dd>Windows</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <section class="origin">
+            <div class="section-shell origin-layout">
+                <div class="origin-title reveal">
+                    <h2>Не оболочка.<br>Глубокая переработка.</h2>
+                </div>
+                <div class="origin-copy reveal" data-delay="1">
+                    <p>
+                        TeaGram развивается на актуальной базе Telegram Desktop.
+                        Я обновляю большой C++/Qt-клиент, адаптирую его к новым версиям Telegram,
+                        исправляю несовместимости и собираю самостоятельный Windows-продукт.
+                    </p>
+                    <ul class="ownership-list">
+                        <li>Актуализация исходной базы</li>
+                        <li>Исправление крашей и конфликтов</li>
+                        <li>Переработка настроек и поведения</li>
+                        <li>Брендинг и изоляция приложения</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="capabilities" id="capabilities">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Пять функций, которых не хватает обычному Telegram</h2>
+                    <p>TeaGram сохраняет важное, убирает ограничения и даёт больше контроля над приватностью.</p>
+                </div>
+                <div class="capability-grid">
+                    <article class="capability-card capability-ghost reveal">
+                        <span class="card-mark" aria-hidden="true">GHOST</span>
+                        <h3>Режим призрака</h3>
+                        <p>Читайте сообщения и смотрите истории без автоматической отправки отметок о просмотре. Статус онлайн и набор текста тоже можно скрыть.</p>
+                        <ul>
+                            <li>Не показывать статус онлайн</li>
+                            <li>Не отправлять отметки о прочтении</li>
+                            <li>Не отмечать просмотр историй</li>
+                            <li>Общие или отдельные правила для аккаунтов</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card capability-history reveal" data-delay="1">
+                        <span class="card-mark" aria-hidden="true">HISTORY</span>
+                        <h3>Удалённые сообщения остаются</h3>
+                        <p>Если собеседник удалит сообщение, оно сохранится локально и останется видимым в диалоге. Историю изменений текста тоже можно открыть.</p>
+                    </article>
+                    <article class="capability-card capability-media reveal" data-delay="2">
+                        <span class="card-mark" aria-hidden="true">ONE VIEW</span>
+                        <h3>Одноразовые медиа не пропадают</h3>
+                        <p>Фото, видео, голосовые сообщения и кружки с режимом одного просмотра сохраняются локально и доступны после открытия.</p>
+                    </article>
+                    <article class="capability-card capability-focus reveal" data-delay="3">
+                        <span class="card-mark" aria-hidden="true">NO ADS</span>
+                        <h3>Без спонсорских каналов</h3>
+                        <p>Рекламные сообщения и рекомендации похожих каналов можно скрыть, чтобы в интерфейсе оставались только нужные чаты и публикации.</p>
+                    </article>
+                    <article class="capability-card capability-forward reveal">
+                        <span class="card-mark" aria-hidden="true">UNLOCK</span>
+                        <h3>Скачивание и пересылка без ограничений</h3>
+                        <p>TeaGram позволяет сохранить или переслать фото, видео и документы из каналов, где автор запретил стандартное скачивание и пересылку.</p>
+                        <p class="capability-note">Используйте функцию для личного доступа и соблюдайте права авторов контента.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="engineering" id="engineering">
+            <div class="section-shell engineering-layout">
+                <div class="engineering-intro reveal">
+                    <h2>Сопровождение продукта, а не разовая сборка</h2>
+                    <p>
+                        При каждом обновлении Telegram меняются API, стили, ресурсы и внутренние связи.
+                        TeaGram нужно переносить вперёд без потери собственных функций и данных пользователя.
+                    </p>
+                </div>
+                <div class="engineering-flow reveal" data-delay="1">
+                    <article>
+                        <h3>Сверить изменения</h3>
+                        <p>Разобрать новую базу Telegram и определить конфликты с кастомным кодом.</p>
+                    </article>
+                    <article>
+                        <h3>Адаптировать форк</h3>
+                        <p>Перенести функции, обновить зависимости и исправить ошибки компиляции.</p>
+                    </article>
+                    <article>
+                        <h3>Проверить поведение</h3>
+                        <p>Собрать Windows-приложение и прогнать сценарии в отдельном тестовом профиле.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="windows">
+            <div class="section-shell windows-layout">
+                <div class="windows-visual reveal" aria-hidden="true">
+                    <img src="img/teagram-logo.webp" width="512" height="512" alt="">
+                </div>
+                <div class="windows-copy reveal" data-delay="1">
+                    <h2>Отдельное приложение в системе</h2>
+                    <p>
+                        TeaGram не конфликтует с другими Telegram-клиентами и может работать рядом с ними.
+                        Собственный профиль, имя процесса и системные идентификаторы отделяют данные и поведение клиента.
+                    </p>
+                    <dl class="system-list">
+                        <div><dt>Профиль</dt><dd>Изолированное хранилище TeaGram</dd></div>
+                        <div><dt>Ссылки</dt><dd>Регистрация обработчика протокола tg</dd></div>
+                        <div><dt>Windows</dt><dd>Ярлыки, уведомления и выбор клиента по умолчанию</dd></div>
+                        <div><dt>Обновления</dt><dd>Собственное имя файла и безопасный путь обновления</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <section class="stack">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Технологии и зоны работы</h2>
+                    <p>Desktop-разработка на уровне приложения, платформы и процесса сборки.</p>
+                </div>
+                <dl class="stack-list reveal">
+                    <div><dt>Клиент</dt><dd>C++17, Qt 6, CMake, Telegram Desktop</dd></div>
+                    <div><dt>Данные</dt><dd>MTProto, локальное хранилище, SQLite</dd></div>
+                    <div><dt>Windows</dt><dd>AppUserModelID, URL protocol, shortcuts, notifications</dd></div>
+                    <div><dt>Сборка</dt><dd>Visual Studio, MSBuild, инкрементальный build workflow</dd></div>
+                    <div><dt>Качество</dt><dd>Изолированные профили, smoke-проверки, совместимость версий</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="section-shell closing-inner reveal">
+                <img src="img/teagram-logo.webp" width="160" height="160" alt="">
+                <p class="closing-kicker">TEAGRAM DESKTOP ДЛЯ WINDOWS</p>
+                <h2>Попробуйте клиент в работе</h2>
+                <p>Откройте публикацию с TeaGram.exe, скачайте актуальную сборку и установите её на Windows.</p>
+                <a class="button button-primary" href="https://t.me/TeaWithGPT/245" target="_blank"
+                    rel="noopener noreferrer">Скачать TeaGram</a>
+                <a class="project-contact" href="https://t.me/Pavel_TeaGPT" target="_blank"
+                    rel="noopener noreferrer">Обсудить разработку похожего проекта</a>
+                <a class="back-link" href="../../">Вернуться ко всем проектам</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="section-shell footer-inner">
+            <span>Павел Лесников</span>
+            <span>Desktop и fullstack-разработка</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

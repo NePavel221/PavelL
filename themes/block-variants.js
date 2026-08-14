@@ -6,6 +6,7 @@ const BlockVariants = {
     // Данные проектов
     allProjects: [
         { img: 'projects/tg-control/preview/preview.webp', icon: 'TC', title: 'TG Control', badge: 'Облачный SaaS', desc: 'Облачный SaaS для продвижения Telegram-каналов через автоматизированные комментарии', tags: ['SaaS', 'React', 'FastAPI'], link: 'projects/tg-control/' },
+        { img: 'projects/teagram/preview/preview.webp', icon: 'TG', title: 'TeaGram Desktop', badge: 'Windows-клиент', desc: 'Кастомный Telegram-клиент с приватностью, сохранением сообщений и системной интеграцией', tags: ['C++', 'Qt', 'Windows'], link: 'projects/teagram/' },
         { img: 'projects/mysterious-shop/preview/preview.jpeg', icon: '💊', title: 'Mysterious Shop', desc: 'Telegram Mini App для магазина БАДов — каталог, корзина, заказы, админка', tags: ['React', 'TypeScript', 'Node.js'], link: 'projects/mysterious-shop/' },
         { img: 'projects/gemini-voice-writer/preview/preview-optimized.jpg', icon: '🎙️', title: 'Gemini Voice Writer', desc: 'Desktop-приложение для голосового ввода с AI-транскрипцией', tags: ['Python', 'PyQt6', 'Gemini'], link: 'projects/gemini-voice-writer/' },
         { img: 'projects/telegram-spammer/preview/preview-optimized.jpg', icon: '📱', title: 'Telegram Spammer', desc: 'Автоматическая рассылка комментариев с антибан-защитой', tags: ['Python', 'Telethon', 'Web UI'], link: 'projects/telegram-spammer/' },
