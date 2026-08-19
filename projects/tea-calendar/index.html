@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0f17">
+    <title>Tea Calendar - production PWA для личной продуктивности | Павел Лесников</title>
+    <meta name="description" content="Кейс Tea Calendar: самостоятельно разработал и запустил PWA с календарем, многоуровневыми задачами, дневником, расходами, совместной работой и уведомлениями.">
+    <link rel="canonical" href="https://nepavel221.github.io/PavelL/projects/tea-calendar/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Tea Calendar - личный production PWA, сделанный одним разработчиком">
+    <meta property="og:description" content="Календарь, дерево задач, дневник и расходы в одном приложении для телефона и компьютера.">
+    <meta property="og:url" content="https://nepavel221.github.io/PavelL/projects/tea-calendar/">
+    <meta property="og:image" content="https://nepavel221.github.io/PavelL/projects/tea-calendar/preview/preview.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="preload" as="image" href="img/gallery/calendar.webp" type="image/webp">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="site-header">
+        <a class="brand" href="../../" aria-label="Вернуться в портфолио Павла Лесникова">
+            <img src="img/icon.webp" width="36" height="36" alt="">
+            <span>
+                <strong>Tea Calendar</strong>
+                <small>Case study</small>
+            </span>
+        </a>
+        <nav aria-label="Навигация по странице">
+            <a href="#product">Продукт</a>
+            <a href="#engineering">Разработка</a>
+            <a class="header-cta" href="https://tea-calendar.duckdns.org/" target="_blank" rel="noopener noreferrer">Попробовать Tea Calendar</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">PRODUCTION PWA ДЛЯ ЛИЧНОЙ ПРОДУКТИВНОСТИ</p>
+                <h1>Разгрузить голову.<br>Собрать день.</h1>
+                <p class="hero-lead">Задачи, дневник и расходы в одном приложении, которым я пользуюсь каждый день.</p>
+                <div class="actions">
+                    <a class="button button-primary" href="https://tea-calendar.duckdns.org/" target="_blank" rel="noopener noreferrer">Попробовать Tea Calendar</a>
+                    <a class="button button-secondary" href="#story">Зачем я его сделал</a>
+                </div>
+            </div>
+            <button class="hero-media media-button reveal" type="button" data-image="img/gallery/calendar.webp" data-alt="Недельный календарь Tea Calendar с синтетическими задачами" aria-label="Увеличить недельный календарь Tea Calendar">
+                <img src="img/gallery/calendar.webp" width="1440" height="960" alt="Недельный календарь Tea Calendar с синтетическими задачами">
+            </button>
+        </section>
+
+        <section class="origin" id="story">
+            <div class="section-shell origin-layout">
+                <p class="origin-label reveal">Из личной потребности</p>
+                <div class="origin-copy reveal">
+                    <h2>Google Календарь не умел работать так, как мне нужно.</h2>
+                    <p>Когда несколько проектов идут параллельно, одной карточки на временной сетке мало. Мне нужны были многоуровневые подзадачи, чтобы разбирать большую работу на конкретные действия и не держать всю структуру в голове.</p>
+                    <p>Я сделал свой инструмент. Затем добавил дневник, расходы, совместные поручения и мобильную PWA. Теперь Tea Calendar помогает мне планировать работу и не терять контекст между проектами.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="product" id="product">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Один день. Весь контекст.</h2>
+                    <p>План остается связан с тем, что нужно сделать, запомнить и посчитать.</p>
+                </div>
+
+                <div class="context-grid">
+                    <article class="context-item context-task reveal">
+                        <div class="context-copy">
+                            <h3>Проект не заканчивается на одной карточке</h3>
+                            <p>У задачи есть дерево подзадач, отдельные статусы, заметки, изображения и свой порядок. Ветки можно перемещать, копировать и возвращать в календарь.</p>
+                        </div>
+                        <button class="media-button" type="button" data-image="img/gallery/task.webp" data-alt="Панель задачи Tea Calendar с многоуровневыми подзадачами и заметкой" aria-label="Увеличить панель задачи">
+                            <img src="img/gallery/task.webp" width="1440" height="960" loading="lazy" alt="Панель задачи Tea Calendar с многоуровневыми подзадачами и заметкой">
+                        </button>
+                    </article>
+
+                    <article class="context-item context-notes reveal">
+                        <div class="context-copy">
+                            <h3>Мысли больше не занимают оперативную память</h3>
+                            <p>Дневные заметки хранят решения, итоги и изображения рядом с расписанием. Редактор сохраняет изменения автоматически.</p>
+                        </div>
+                        <button class="media-button" type="button" data-image="img/gallery/day-notes.webp" data-alt="Дневная заметка Tea Calendar рядом с недельным планом" aria-label="Увеличить дневную заметку">
+                            <img src="img/gallery/day-notes.webp" width="1440" height="960" loading="lazy" alt="Дневная заметка Tea Calendar рядом с недельным планом">
+                        </button>
+                    </article>
+
+                    <article class="context-item context-money reveal">
+                        <div class="context-copy">
+                            <h3>Расходы видны в ритме недели</h3>
+                            <p>Покупки складываются в деревья по дням. Суммы принимают формулы, а отчет показывает итог за любой период.</p>
+                        </div>
+                        <button class="media-button" type="button" data-image="img/gallery/expenses.webp" data-alt="Отчет Tea Calendar по синтетическим личным расходам" aria-label="Увеличить отчет по расходам">
+                            <img src="img/gallery/expenses.webp" width="1920" height="1280" loading="lazy" alt="Отчет Tea Calendar по синтетическим личным расходам">
+                        </button>
+                    </article>
+
+                    <article class="context-item context-mobile reveal">
+                        <div class="context-copy">
+                            <h3>Тот же рабочий ритм на телефоне</h3>
+                            <p>PWA устанавливается на iOS и Android. Перенос задач, изменение времени и навигация работают с сенсорными жестами.</p>
+                        </div>
+                        <button class="phone-frame media-button" type="button" data-image="img/gallery/mobile.webp" data-alt="Мобильный недельный режим Tea Calendar" aria-label="Увеличить мобильный экран">
+                            <img src="img/gallery/mobile.webp" width="393" height="852" loading="lazy" alt="Мобильный недельный режим Tea Calendar">
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="flow">
+            <div class="section-shell flow-layout">
+                <div class="flow-copy reveal">
+                    <h2>Календарь показывает время. Tea Calendar ведет работу дальше.</h2>
+                    <p>Задача проходит через план, выполнение и историю. Ее можно увидеть на временной сетке, в Kanban или в общем списке, не создавая копии в разных сервисах.</p>
+                    <ul>
+                        <li>Фильтры по статусам, спискам, датам и исполнителям</li>
+                        <li>Многоуровневые деревья с переносом и Alt-копированием</li>
+                        <li>Корзина, восстановление и история завершения</li>
+                        <li>Telegram и Web Push напоминания</li>
+                    </ul>
+                </div>
+                <div class="flow-media reveal">
+                    <button class="media-button" type="button" data-image="img/gallery/kanban.webp" data-alt="Kanban Tea Calendar с синтетическими проектными задачами" aria-label="Увеличить Kanban">
+                        <img src="img/gallery/kanban.webp" width="1440" height="960" loading="lazy" alt="Kanban Tea Calendar с синтетическими проектными задачами">
+                    </button>
+                    <button class="media-button flow-media-secondary" type="button" data-image="img/gallery/all-tasks.webp" data-alt="Общий список Tea Calendar с фильтрами и деревьями задач" aria-label="Увеличить общий список задач">
+                        <img src="img/gallery/all-tasks.webp" width="1440" height="960" loading="lazy" alt="Общий список Tea Calendar с фильтрами и деревьями задач">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="shared">
+            <div class="section-shell shared-inner reveal">
+                <div>
+                    <h2>Личный инструмент умеет работать вдвоем.</h2>
+                    <p>Пользователи добавляют друзей по email или Telegram и ставят друг другу задачи. Исполнитель видит поручение в своем календаре и получает уведомление, но чужие личные планы остаются закрытыми.</p>
+                </div>
+                <div class="shared-facts" aria-label="Возможности совместной работы">
+                    <span>Взаимные заявки</span>
+                    <span>Выбор исполнителя</span>
+                    <span>Общие задачи</span>
+                    <span>Личные данные отдельно</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="engineering" id="engineering">
+            <div class="section-shell">
+                <div class="engineering-title reveal">
+                    <p>Сделал весь продукт один</p>
+                    <h2>От идеи и UX до сервера и обновлений PWA.</h2>
+                </div>
+
+                <div class="engineering-grid">
+                    <article class="engineering-main reveal">
+                        <h3>Fullstack-приложение</h3>
+                        <p>Спроектировал модель данных и пользовательские сценарии, собрал адаптивный интерфейс, API, авторизацию, загрузку файлов и интеграции.</p>
+                        <dl>
+                            <div><dt>Frontend</dt><dd>Next.js 15, React 19, TypeScript, FullCalendar, TipTap</dd></div>
+                            <div><dt>Backend</dt><dd>Next.js API, Prisma, SQLite, защищенные сессии</dd></div>
+                            <div><dt>Интеграции</dt><dd>Telegram Bot API, Telegram Mini App, Web Push</dd></div>
+                        </dl>
+                    </article>
+                    <article class="engineering-side reveal">
+                        <h3>Production и надежность</h3>
+                        <p>Развернул сервис в Docker за Nginx и HTTPS. Релизный сценарий сохраняет базу и файлы, проверяет готовность и возвращает предыдущую версию при сбое.</p>
+                        <div class="tech-cloud" aria-label="Инфраструктура и качество">
+                            <span>Docker</span>
+                            <span>Nginx</span>
+                            <span>HTTPS</span>
+                            <span>Service Worker</span>
+                            <span>WebP</span>
+                            <span>Unit tests</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="proof">
+            <div class="section-shell proof-inner reveal">
+                <div>
+                    <strong>Production PWA</strong>
+                    <span>Открывается в браузере и устанавливается как приложение</span>
+                </div>
+                <div>
+                    <strong>Ежедневный инструмент</strong>
+                    <span>Я продолжаю пользоваться им и развивать под реальные задачи</span>
+                </div>
+                <div>
+                    <strong>Открыт для других</strong>
+                    <span>Можно зарегистрироваться и собрать собственный рабочий ритм</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="section-shell closing-inner reveal">
+                <p>ПРОДУКТОВАЯ FULLSTACK-РАЗРАБОТКА</p>
+                <h2>Нужен инструмент под ваш рабочий процесс?</h2>
+                <span>Могу разобраться в задаче, собрать интерфейс и backend, подключить интеграции и довести продукт до production.</span>
+                <div class="actions">
+                    <a class="button button-primary" href="https://t.me/Pavel_TeaGPT" target="_blank" rel="noopener noreferrer">Обсудить проект</a>
+                    <a class="button button-secondary" href="https://tea-calendar.duckdns.org/" target="_blank" rel="noopener noreferrer">Попробовать Tea Calendar</a>
+                </div>
+                <a class="back-link" href="../../">Вернуться ко всем проектам</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>Павел Лесников</span>
+        <span>Fullstack-разработка и автоматизация</span>
+    </footer>
+
+    <dialog class="lightbox" aria-label="Увеличенный экран Tea Calendar">
+        <button class="lightbox-close" type="button" aria-label="Закрыть изображение">Закрыть</button>
+        <img alt="">
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>

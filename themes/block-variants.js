@@ -5,6 +5,7 @@ const BlockVariants = {
 
     // Данные проектов
     allProjects: [
+        { img: 'projects/tea-calendar/preview/preview.webp', icon: 'TC', title: 'Tea Calendar', badge: 'Production PWA', desc: 'Личный центр управления проектами, заметками, расходами и совместными задачами', tags: ['Next.js', 'TypeScript', 'PWA'], link: 'projects/tea-calendar/' },
         { img: 'projects/artelium/preview/preview.webp', icon: 'A', title: 'Artelium', badge: 'Production SaaS', desc: 'AI-сервис для серийной генерации, отбора и управления товарной графикой', tags: ['Node.js', 'PostgreSQL', 'AI'], link: 'projects/artelium/' },
         { img: 'projects/tg-control/preview/preview.webp', icon: 'TC', title: 'TG Control', badge: 'Облачный SaaS', desc: 'Облачный SaaS для продвижения Telegram-каналов через автоматизированные комментарии', tags: ['SaaS', 'React', 'FastAPI'], link: 'projects/tg-control/' },
         { img: 'projects/teagram/preview/preview.webp', icon: 'TG', title: 'TeaGram Desktop', badge: 'Windows-клиент', desc: 'Кастомный Telegram-клиент с приватностью, сохранением сообщений и системной интеграцией', tags: ['C++', 'Qt', 'Windows'], link: 'projects/teagram/' },
