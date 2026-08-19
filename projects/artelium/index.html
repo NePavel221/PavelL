@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11110f">
+    <title>Artelium - AI SaaS для серийной генерации изображений | Павел Лесников</title>
+    <meta name="description" content="Кейс Artelium: спроектировал, разработал и запустил production SaaS с AI-генерацией, очередью задач, биллингом, PostgreSQL и изоляцией данных.">
+    <link rel="canonical" href="https://nepavel221.github.io/PavelL/projects/artelium/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Artelium - production SaaS, сделанный одним разработчиком">
+    <meta property="og:description" content="Полный цикл разработки AI-продукта: интерфейс, backend, очередь генераций, биллинг и production-инфраструктура.">
+    <meta property="og:image" content="https://nepavel221.github.io/PavelL/projects/artelium/preview/preview.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="800">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="site-header">
+        <a class="brand" href="../../" aria-label="Вернуться в портфолио Павла Лесникова">
+            <span class="brand-mark">A</span>
+            <span>ARTELIUM</span>
+        </a>
+        <nav aria-label="Навигация по странице">
+            <a href="#product">Продукт</a>
+            <a href="#engineering">Разработка</a>
+            <a class="nav-cta" href="https://artelium.tea-gpt.ru/" target="_blank" rel="noopener noreferrer">Открыть сервис</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">PRODUCTION AI SAAS</p>
+                <h1>Один разработчик.<br>Весь продукт.</h1>
+                <p class="hero-lead">Спроектировал, разработал и запустил сервис для серийной генерации и отбора товарной графики.</p>
+                <div class="actions">
+                    <a class="button button-primary" href="https://artelium.tea-gpt.ru/" target="_blank" rel="noopener noreferrer">Открыть Artelium</a>
+                    <a class="button button-secondary" href="#engineering">Как я это сделал</a>
+                </div>
+            </div>
+            <figure class="hero-media reveal">
+                <div class="browser-frame">
+                    <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <img src="img/workspace.webp" width="1600" height="1000" alt="Рабочее пространство Artelium с тремя концепциями и сериями вариантов">
+                </div>
+                <figcaption>Обезличенный демонстрационный проект</figcaption>
+            </figure>
+        </section>
+
+        <section class="problem" id="product">
+            <div class="section-shell problem-grid">
+                <h2 class="reveal">Из генератора картинок<br>в рабочий процесс</h2>
+                <div class="problem-copy reveal">
+                    <p>Большая серия быстро превращается в десятки промптов, сотни файлов и ручной поиск удачных версий.</p>
+                    <p>Artelium держит весь цикл в одном месте: от идеи и референсов до отбора, правок и готовой выгрузки.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>От концепции до готовой серии</h2>
+                    <p>Интерфейс рассчитан на реальную работу с большими наборами, а не на одну генерацию за раз.</p>
+                </div>
+                <div class="workflow-grid">
+                    <ol class="workflow-list reveal">
+                        <li><span>Создать пространство</span><p>Отдельный проект со своими изображениями, настройками и историей.</p></li>
+                        <li><span>Разбить работу на концепции</span><p>У каждой серии свой промпт, референсы, формат и количество вариантов.</p></li>
+                        <li><span>Запустить очередь</span><p>Задачи выполняются параллельно, поддерживают повторы и отмену.</p></li>
+                        <li><span>Отобрать результат</span><p>Оценки, фильтры, точечные правки, скачивание и итоговый ZIP.</p></li>
+                    </ol>
+                    <button class="media-button reveal" type="button" data-lightbox="img/concept.webp" aria-label="Увеличить экран работы с концепцией">
+                        <img src="img/concept.webp" width="1400" height="850" loading="lazy" alt="Карточка концепции Artelium с оригиналом, вариантами и действиями отбора">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <h2>Сотни вариантов остаются управляемыми</h2>
+                    <p>Полноэкранный обзор помогает сравнивать большую серию, отмечать просмотренное и не терять выбранные версии.</p>
+                </div>
+                <button class="wide-media media-button reveal" type="button" data-lightbox="img/overview.webp" aria-label="Увеличить полноэкранный обзор вариантов">
+                    <img src="img/overview.webp" width="1600" height="1000" loading="lazy" alt="Полноэкранный обзор серии изображений в Artelium">
+                </button>
+            </div>
+        </section>
+
+        <section class="saas" id="engineering">
+            <div class="section-shell">
+                <div class="saas-intro reveal">
+                    <h2>Это коммерческий SaaS.<br>Не обёртка над API.</h2>
+                    <p>Я разработал продуктовый контур, который позволяет давать доступ реальным пользователям и контролировать стоимость каждой операции.</p>
+                </div>
+                <div class="capability-grid">
+                    <article class="capability capability-featured reveal">
+                        <span class="capability-index">01</span>
+                        <h3>Аккаунты и данные</h3>
+                        <p>Регистрация, защищённые сессии, PostgreSQL и отдельные файлы, настройки и проекты для каждого пользователя.</p>
+                    </article>
+                    <article class="capability reveal">
+                        <span class="capability-index">02</span>
+                        <h3>Очередь генераций</h3>
+                        <p>Параллельная обработка, лимиты, повторы после временных сбоев, отмена и подробные статусы.</p>
+                    </article>
+                    <article class="capability reveal">
+                        <span class="capability-index">03</span>
+                        <h3>Кредиты и промокоды</h3>
+                        <p>Резерв при старте задачи, списание после успеха и автоматический возврат при ошибке или отмене.</p>
+                    </article>
+                    <article class="capability capability-dark reveal">
+                        <span class="capability-index">04</span>
+                        <h3>Управление сервисом</h3>
+                        <p>Админ-панель, статистика пользователей, ручные начисления и контроль хранилища.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="proof">
+            <div class="section-shell proof-grid">
+                <div class="proof-copy reveal">
+                    <h2>Деньги и файлы<br>под контролем</h2>
+                    <p>Интерфейс показывает баланс, историю операций и занятое место. Пользователь понимает, за что списались кредиты и где лежат результаты.</p>
+                    <div class="proof-links">
+                        <button type="button" data-lightbox="img/credits.webp">Посмотреть биллинг</button>
+                        <button type="button" data-lightbox="img/storage.webp">Посмотреть хранилище</button>
+                    </div>
+                </div>
+                <button class="media-button reveal" type="button" data-lightbox="img/credits.webp" aria-label="Увеличить экран баланса и пополнения">
+                    <img src="img/credits.webp" width="1600" height="1000" loading="lazy" alt="Экран баланса, пополнения и промокодов Artelium">
+                </button>
+            </div>
+        </section>
+
+        <section class="ownership">
+            <div class="section-shell">
+                <div class="ownership-heading reveal">
+                    <h2>От схемы данных<br>до HTTPS</h2>
+                    <p>Все части Artelium я собрал сам и довёл до работающего production.</p>
+                </div>
+                <dl class="stack-list reveal">
+                    <div><dt>Frontend</dt><dd>JavaScript, адаптивный интерфейс, lightbox и управление большими сериями</dd></div>
+                    <div><dt>Backend</dt><dd>Node.js API, пользовательские состояния, очередь и файловые операции</dd></div>
+                    <div><dt>Data</dt><dd>PostgreSQL, сессии, биллинг, изоляция данных и атомарная запись</dd></div>
+                    <div><dt>AI</dt><dd>Responses API, промпты с референсами, ретраи и постобработка изображений</dd></div>
+                    <div><dt>Production</dt><dd>Linux, Nginx, HTTPS, systemd, health checks и резервные копии</dd></div>
+                    <div><dt>Quality</dt><dd>API-smoke, state guards, fake provider, billing и browser-тесты</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="section-shell closing-inner reveal">
+                <p>FULLSTACK РАЗРАБОТКА ПОД КЛЮЧ</p>
+                <h2>Нужен свой сервис?</h2>
+                <span>Могу превратить рабочий процесс в продукт с интерфейсом, backend, интеграциями и сервером.</span>
+                <div class="actions">
+                    <a class="button button-primary" href="https://t.me/Pavel_TeaGPT" target="_blank" rel="noopener noreferrer">Обсудить проект</a>
+                    <a class="button button-secondary" href="https://artelium.tea-gpt.ru/" target="_blank" rel="noopener noreferrer">Открыть Artelium</a>
+                </div>
+                <a class="back-link" href="../../">Вернуться ко всем проектам</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>Павел Лесников</span>
+        <span>Fullstack-разработка и автоматизация</span>
+    </footer>
+
+    <dialog class="lightbox" aria-label="Увеличенный экран Artelium">
+        <button class="lightbox-close" type="button">Закрыть</button>
+        <img alt="">
+    </dialog>
+    <script src="script.js"></script>
+</body>
+</html>
