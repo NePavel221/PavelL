@@ -5,6 +5,7 @@ const BlockVariants = {
 
     // Данные проектов
     allProjects: [
+        { img: 'projects/vapecity-site/preview/preview.webp', icon: 'VC', title: 'VapeCity', badge: 'Коммерческий сайт', desc: 'Сайт сети из 12 магазинов: от слабого референса до дизайна, админки и production за три дня', tags: ['JavaScript', 'Python', 'Nginx'], link: 'projects/vapecity-site/' },
         { img: 'projects/tea-calendar/preview/preview.webp', icon: 'TC', title: 'Tea Calendar', badge: 'Production PWA', desc: 'Личный центр управления проектами, заметками, расходами и совместными задачами', tags: ['Next.js', 'TypeScript', 'PWA'], link: 'projects/tea-calendar/' },
         { img: 'projects/artelium/preview/preview.webp', icon: 'A', title: 'Artelium', badge: 'Production SaaS', desc: 'AI-сервис для серийной генерации, отбора и управления товарной графикой', tags: ['Node.js', 'PostgreSQL', 'AI'], link: 'projects/artelium/' },
         { img: 'projects/tg-control/preview/preview.webp', icon: 'TC', title: 'TG Control', badge: 'Облачный SaaS', desc: 'Облачный SaaS для продвижения Telegram-каналов через автоматизированные комментарии', tags: ['SaaS', 'React', 'FastAPI'], link: 'projects/tg-control/' },
