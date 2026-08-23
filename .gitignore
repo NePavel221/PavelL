@@ -8,3 +8,6 @@ projects/*/preview/*.png
 # Исключение: если вдруг будут оптимизированные PNG
 !projects/*/img/*-optimized.png
 !projects/*/preview/*-optimized.png
+
+# Локальные служебные файлы Factory
+.factory/
